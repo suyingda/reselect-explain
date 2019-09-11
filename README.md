@@ -120,9 +120,13 @@ function getDependencies(funcs) {
 }
 ```
 该函数处理了我们第一个参数（数组集合） 
-##### Array.isArray(funcs[0]) ? funcs[0] : funcs
+```javascript
+  Array.isArray(funcs[0]) ? funcs[0] : funcs
+```
 如果我们参数第一个是数组则返回数据第一个元素，否则全部返回我们的第一个参数（数组）
-##### dependencies.every(dep => typeof dep === 'function')
+```javascript
+ dependencies.every(dep => typeof dep === 'function')
+```
 判断每一个元素是否都是函数，如果不是就会报错
 ----------简而言之，就是一个判断是否是函数的一个工具函数 <br/>
 ### ok  look down 
@@ -139,8 +143,8 @@ const memoizedResultFunc = memoize(
 
 此时：memoizedResultFunc 得到了一个 闭包函数等待执行
 
-》》》
-    const selector = memoize(function () {
+```javascript
+  const selector = memoize(function () {
       const params = []
       const length = dependencies.length
       for (let i = 0; i < length; i++) {
@@ -148,8 +152,7 @@ const memoizedResultFunc = memoize(
       }
       return memoizedResultFunc.apply(null, params)
     })
-
-》》》
+```
 params 获取的就是我们传入的第一个参数集合 ==【】
  memoizedResultFunc.apply(null, params) ：memoizedResultFunc函数通过apply 获取到了params参数
  
