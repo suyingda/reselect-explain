@@ -8,8 +8,7 @@
 
 1.首先自己了解它，至少你要知道它的用法吧！
 
-举个列子：
-
+ 
 ```javascript
 import { createSelector } from 'reselect'
 ```
