@@ -120,8 +120,8 @@ function getDependencies(funcs) {
 如果我们参数第一个是数组则返回数据第一个元素，否则全部返回我们的第一个参数（数组）
 ##### dependencies.every(dep => typeof dep === 'function')
 判断每一个元素是否都是函数，如果不是就会报错
-----------简而言之，就是一个判断是否是函数的一个工具函数<br/>
-###ok  look down ||
+----------简而言之，就是一个判断是否是函数的一个工具函数 <br/>
+### ok  look down 
 闭包来了  
 ```javascript
 const memoizedResultFunc = memoize(
