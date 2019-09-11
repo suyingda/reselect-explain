@@ -93,7 +93,7 @@ const makeGetVisibleTodos = () => {
 export default makeGetVisibleTodos
 ```
 函数接收的是两个参数，第一个是我们要缓存的数据值，第二个是我们数据操作的函数 <br/>
-#### ok  look down ||
+#### ok  look down 
 ```javascript
  const resultFunc = funcs.pop();
  const dependencies = getDependencies(funcs);
@@ -127,7 +127,8 @@ function getDependencies(funcs) {
  dependencies.every(dep => typeof dep === 'function')
 ```
 判断每一个元素是否都是函数，如果不是就会报错
-----------简而言之，就是一个判断是否是函数的一个工具函数 <br/>
+  <br/>
+简而言之，就是一个判断是否是函数 <br/>
 ### ok  look down 
 闭包来了  
 ```javascript
