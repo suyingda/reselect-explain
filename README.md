@@ -1,6 +1,10 @@
-# blogS
+ 
 
-reselect explain
+# reselect explain
+
+```javascript
+只有100来行代码的库----https://github.com/reduxjs/reselect#connecting-a-selector-to-the-redux-store
+```
 
 1.首先自己了解它，至少你要知道它的用法吧！
 
