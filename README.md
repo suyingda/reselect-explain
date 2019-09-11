@@ -230,7 +230,7 @@ return lastArgs = arguments
 最后就是页面中的 return selector;
 
 
-#说了这么多 实践一下
+# 说了这么多 实践一下
 
 首先我们模拟一个redux state data
 
