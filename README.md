@@ -229,6 +229,91 @@ return lastArgs = arguments
 
 最后就是页面中的 return selector;
 
+
+#说了这么多  实践一下
+
+首先我们模拟一个redux state data
+
+html 部分用
+```javascript
+<div id="computed">0</div>
+<div onclick="init()">点击</div>
+```
+```javascript
+ var obj = {
+        a: 0
+    };
+```
+开始创建reselect 
+```javascript
+   const closure = createClosure();
+```
+
+closure 作为导出的封装函数，接轨reselect应该要这样写
+```javascript
+ const closure = createClosure((这个是一个默认函数));
+
+```
+我们来写第一个函数 createClosure
+```javascript
+    function createClosure(saveData) {
+        return function (...funcs) {
+            const oneF = funcs.pop();
+            const twoD = funcs;
+            const closureSaveData = saveData(function () {
+                return oneF.apply(null, arguments)
+            });
+            const cccc = saveData(
+                function () {
+                    return closureSaveData.apply(null, twoD)
+                }
+            );
+            return cccc;
+        }
+    }
+```
+咳咳咳 是不是很像 
+下面这个函数
+```javascript
+  const closureSaveData = saveData(function () {
+                return oneF.apply(null, arguments)
+            });
+   const cccc = saveData(
+                function () {
+                    return closureSaveData.apply(null, twoD)
+                }
+            );
+```
+目的就是将我们twoD参数和 oneF 执行函数的结果进行收集  交给saveData处理，
+最终返回出来 cccc
+
+closureSaveData通过apply获取到了参数twoD(也就是我们第一个参数)后给到了我们oneF
+执行函数 （这里我偷懒了）  源码是第一个参数数组里面每个都是函数 绑定了apply 我们
+自己传入的参数  ，但是并不影响接下来的操作  
+
+看起来  就是我们需要的值
+```javascript
+return cccc 
+```
+接下来需要处理一番才能出炉
+函数saveData
+```javascript
+    function saveData(func) {
+        let last = null;
+        let lastT = null;
+        return function () {
+            console.log(last, 'before', arguments)
+            last = func();
+            lastT = arguments;
+            return last
+        }
+    }
+```
+这样我们就每次dispatch 后 进来before都能拿到arguments还有我们last 
+值进行比较了，在这里就可以自己自由发挥了。
+最后结果返回over!!
+ 
+
 ##  如有不对，请issue，谢谢。
 
 
