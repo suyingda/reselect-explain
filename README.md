@@ -256,7 +256,7 @@ closure 作为导出的封装函数，接轨reselect应该要这样写
 ```
 我们来写第一个函数 createClosure
 ```javascript
-    function createClosure(saveData) {
+ function createClosure(saveData) {
         return function (...funcs) {
             const oneF = funcs.pop();
             const twoD = funcs;
@@ -265,7 +265,11 @@ closure 作为导出的封装函数，接轨reselect应该要这样写
             });
             const cccc = saveData(
                 function () {
-                    return closureSaveData.apply(null, twoD)
+                    let params = [];
+                    for (let i = 0; i < twoD.length; i++) {
+                        params.push(twoD[i].apply(null, arguments))
+                    }
+                    return closureSaveData.apply(null, params)
                 }
             );
             return cccc;
@@ -299,20 +303,37 @@ return cccc
 函数saveData
 ```javascript
     function saveData(func) {
-        let last = null;
-        let lastT = null;
-        return function () {
-            console.log(last, 'before', arguments)
-            last = func();
-            lastT = arguments;
-            return last
-        }
-    }
+           let last = null;
+           let lastT = null;
+           return function () {
+                   console.log(last, 'before', lastT)
+                   last = func.apply(null, arguments);
+                   lastT = arguments[0];
+                   obj.a = last
+                   return last
+           }
+       }
 ```
 这样我们就每次dispatch 后 进来before都能拿到arguments还有我们last 
 值进行比较了，在这里就可以自己自由发挥了。
+
+ ```javascript
+  const i = closure((v) => v, _click)
+    function _click() {
+        console.log('消耗性能')
+        var value = Math.floor(Math.random() * 10);
+
+        c.innerHTML = obj.a
+        return value
+    }
+
+    function init() {
+        i(obj.a)
+    }
+
+    init()
+```
 最后结果返回over!!
- 
 
 ##  如有不对，请issue，谢谢。
 
