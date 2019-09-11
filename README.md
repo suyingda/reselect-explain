@@ -11,15 +11,13 @@ import { createSelector } from 'reselect'
 核心函数：使用之前调用这个函数 createSelector
 
 在redux中，mapStateToProps （一般都是我们作为常用的数据返回函数，具体用法不过多解释）
- ```
+
        const mapStateToProps = (state, props) => {
 				const { initData} = state;
 				return {
 				   initData
 				};
 		};
-            
-
 ```html
 
 
