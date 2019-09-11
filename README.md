@@ -209,6 +209,9 @@ lastResult结果集合 (  lastArgs = arguments)    ）
     }
 ```
 进行缓存赋值 操作 ！false ===true 拿到的值是我们操作函数的值 ,否则返回（页面的原始数据）
+```javascript
+return lastArgs = arguments
+```
 
 如果三个条件都不满足说明：反的来说就是需要改变了
 遍历prev (已经是页面中的数据或则是操作函数返回的数据) 比对 next（arguments,我们第一个参数
