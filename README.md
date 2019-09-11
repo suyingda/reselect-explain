@@ -11,28 +11,28 @@ import { createSelector } from 'reselect'
 核心函数：使用之前调用这个函数 createSelector
 
 在redux中，mapStateToProps （一般都是我们作为常用的数据返回函数，具体用法不过多解释）
-
+```javscript
        const mapStateToProps = (state, props) => {
 				const { initData} = state;
 				return {
 				   initData
 				};
 		};
-```html
-
-
+```
 initData 作为一个数据返回体 ， 正常情况下我们对其进行操作处理返回会这样做
-
-const mapStateToProps = (state, props) => {
-    const {
-       initData
-    } = state;
-    return {
-       initData：initData.filter((item)=>item%2)
-    };
-};
+```javscript
+	const mapStateToProps = (state, props) => {
+		const {
+		   initData
+		} = state;
+		return {
+		   initData：initData.filter((item)=>item%2)
+		};
+	};
+```
 其中返回函数中进行了js操作（filter) ，对应Reselect-github说法
-《《《《
+
+```javscript
 Connecting a Selector to the Redux Store
 
 const makeMapStateToProps = () => {
@@ -44,15 +44,16 @@ const makeMapStateToProps = () => {
   }
   return mapStateToProps
 }
-》》》》》
+```
+
 这样就会产生一个问题，每次调用都是进行相应的操作计算返回（这个也有介绍），数据量达到一个量级的时候就会严重影响性能。
 Reselect 的作用：
 
 createSelector（） ：
 内部参数接受对应源码来看
-》》》
+```js
 export const createSelector = createSelectorCreator(defaultMemoize)
-《《《
+```
 reselect 导出了这个函数  createSelector 并且这个函数实质返回的是一个createSelectorCreator函数
 
 对应源码52行：
