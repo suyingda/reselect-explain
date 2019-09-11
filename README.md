@@ -89,7 +89,7 @@ const makeGetVisibleTodos = () => {
 
 export default makeGetVisibleTodos
 ```
-    函数接收的是两个参数，第一个是我们要缓存的数据值，第二个是我们数据操作的函数<br/>
+函数接收的是两个参数，第一个是我们要缓存的数据值，第二个是我们数据操作的函数 <br/>
 #### ok  look down ||
 ```javascript
  const resultFunc = funcs.pop();
